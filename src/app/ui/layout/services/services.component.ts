@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceUseCase } from 'src/app/usecases/usecase/service.usecase';
+import { Service } from 'src/app/entities/service.entity';
 
 @Component({
   selector: 'app-services',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit {
-
-  constructor() { }
+  services: Service[];
+  constructor(private readonly serviceUseCase: ServiceUseCase) { }
 
   ngOnInit() {
+    this.filterServices();
   }
+
+  filterServices() {
+
+  }
+
 
 }
