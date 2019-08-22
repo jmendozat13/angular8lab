@@ -3,45 +3,41 @@
         <div class="row">
             <div class="col col-lg-8">
                 <div class="card-deck mb-3">
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card mb-4 shadow-sm" *ngFor="let service of services">
                         <div class="card-body">
-                            <div class="card-title pricing-card-title"><b>Electricidad</b></div>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere sit culpa aliquam nobis
-                            eligendi illum soluta laborum recusandae sequi ratione vel, impedit, harum pariatur qui
-                            cupiditate deleniti facilis eveniet vero.
+                            <div class="card-title pricing-card-title"><b>{{service.name}}</b></div>
+                            {{service.description}}
                         </div>
                         <div class="card-footer text-muted">
-                            <button type="button" class="btn btn-link">Editar</button>
-                            <button type="button" class="btn btn-link">Eliminar</button>
+                            <button type="button" class="btn btn-link" (click)="editService(service)">Editar</button>
+                            <button type="button" class="btn btn-link"
+                                (click)="deleteService(service)">Eliminar</button>
                         </div>
                     </div>
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <div class="card-title pricing-card-title"><b>Auxilio Mecanico</b></div>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere sit culpa aliquam nobis
-                            eligendi illum soluta laborum recusandae sequi ratione vel, impedit, harum pariatur qui
-                            cupiditate deleniti facilis eveniet vero.
-                        </div>
-                        <div class="card-footer text-muted">
-                            <button type="button" class="btn btn-link">Editar</button>
-                            <button type="button" class="btn btn-link">Eliminar</button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <div class="col col-lg-4">
                 <div class="card mb-6">
-                    <div class="card-body">
-                        <div class="card-title pricing-card-title"><b>Servicio</b></div>
-                        <form method="post">
+                    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+                        <div class="card-body">
+                            <div class="card-title pricing-card-title"><b>Servicio</b></div>
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Nombre</label>
-                                <input type="email" class="form-control">
+                                <label for="name">Nombre:</label>
+                                <input type="text" class="form-control" formControlName="name" id="name"
+                                    [ngClass]="{'is-invalid': serviceForm.controls['name'].hasError('required') && serviceForm.controls['name'].touched}"
+                                    autocomplete="off">
+                                <div class="error"
+                                    *ngIf="serviceForm.controls['name'].hasError('required') && serviceForm.controls['name'].touched">
+                                    name is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Descripción</label>
-                                <input type="email" class="form-control">
+                                <label for="description">Descripción:</label>
+                                <input type="text" class="form-control" formControlName="description" id="description"
+                                    autocomplete="off"
+                                    [ngClass]="{'is-invalid': serviceForm.controls['description'].hasError('required') && serviceForm.controls['description'].touched}">
+                                <div class="error"
+                                    *ngIf="serviceForm.controls['description'].hasError('required') && serviceForm.controls['description'].touched">
+                                    description is required</div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Tipo</label>
@@ -52,12 +48,13 @@
                                     <option>Otros</option>
                                 </select>
                             </div>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-outline-success">Grabar</button>
-                        <button type="button" class="btn btn-outline-danger">Cancelar</button>
-                    </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-outline-success">Grabar</button>
+                            <button type="button" class="btn btn-outline-danger" (click)="cancel()">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

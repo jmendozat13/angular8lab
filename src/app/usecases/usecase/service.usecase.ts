@@ -9,11 +9,10 @@ export class ServiceUseCase {
 
   constructor(private readonly serviceRepository: ServiceRepository) { }
 
-  update(id: number, service: Service): Service {
-    return this.serviceRepository.update(id, service);
-  }
-
-  create(service: Service): Service {
+  save(service: Service): Service {
+    if (service.id !== 0 && service.id !== null) {
+      return this.serviceRepository.update(service.id, service);
+    }
     return this.serviceRepository.create(service);
   }
   delete(id: number): boolean {

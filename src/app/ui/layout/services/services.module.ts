@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ServicesComponent } from './services.component';
 import { RouterModule } from '@angular/router';
 import { ServicesRoutes } from './services.routes';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../../components/components.module';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { ServicesRoutes } from './services.routes';
   exports: [ServicesComponent],
   imports: [
     RouterModule.forChild(ServicesRoutes),
-    CommonModule
-  ]
+    CommonModule,
+    ReactiveFormsModule,
+    ComponentsModule
+  ],
 })
 export class ServicesModule { }

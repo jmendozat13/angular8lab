@@ -11,7 +11,9 @@ export class ServiceLocalStorage implements ServiceRepository {
 
   create(service: Service): Service {
     const arrayServices = this.getDataService();
-    service.id = arrayServices.length + 1;
+    const numberdecimal = Math.random().toString();
+    // tslint:disable-next-line: radix
+    service.id = parseInt(numberdecimal.split('.')[1]);
     arrayServices.push(service);
     localStorage.setItem(this.modelKey, JSON.stringify(arrayServices));
     return service;
@@ -19,28 +21,24 @@ export class ServiceLocalStorage implements ServiceRepository {
 
   update(id: number, service: Service): Service {
     const arrayServices = this.getDataService();
-    let serviceupdate: Service;
-    arrayServices.forEach(serviceitem => {
-      if (serviceitem.id === id) {
-        serviceitem.name = service.name;
-        service.description = service.description;
-        serviceupdate = serviceitem;
-      }
-    });
-    return serviceupdate;
+    const index = arrayServices.findIndex(e => e.id === id);
+    arrayServices[index] = service;
+    localStorage.setItem(this.modelKey, JSON.stringify(arrayServices));
+    return service;
   }
+
   delete(id: number): boolean {
     const arrayServices = this.getDataService();
     let result = false;
-    const removeIndex = arrayServices.map((item) => item.id).indexOf(id);
-    localStorage.setItem(this.modelKey, JSON.stringify(removeIndex));
+    const newArrayServices = arrayServices.filter(s => s.id !== id);
+    localStorage.setItem(this.modelKey, JSON.stringify(newArrayServices));
     result = true;
     return result;
   }
 
   filterBy(type: string): Service[] {
     const arrayServices = this.getDataService();
-    return arrayServices.filter(s => s.type === type);
+    return arrayServices;//.filter(s => s.type === type);
   }
 
   private getDataService(): Service[] {

@@ -6,12 +6,19 @@ export const LayoutRoutes: Route[] = [{
     component: LayoutComponent,
     children: [
         {
-            path: '',
+            path: 'services',
             loadChildren: () =>
                 import('../layout/services/services.module').then(
                     m => m.ServicesModule
                 )
-        }
+        },
+        {
+            path: 'services/:type',
+            loadChildren: () =>
+                import('../layout/services/services.module').then(
+                    m => m.ServicesModule
+                )
+        },
     ]
 }
 ];
