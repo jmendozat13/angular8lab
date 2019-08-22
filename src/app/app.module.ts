@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { NoPageModule } from './ui/no-page/no-page.module';
 import { ServiceRepository } from './usecases/repository/service.repository';
 import { ServiceLocalStorage } from './services/storage/service.localstorage';
-import { ComponentsModule } from './ui/components/components.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { ComponentsModule } from './ui/components/components.module';
     AppRoutingModule,
     LayoutModule,
     NoPageModule,
-    ComponentsModule
   ],
   providers: [{ provide: ServiceRepository, useClass: ServiceLocalStorage }],
   bootstrap: [AppComponent],

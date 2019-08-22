@@ -30,19 +30,25 @@ export class ServicesComponent implements OnInit, OnDestroy {
     this.serviceForm = this.formBuilder.group({
       id: new FormControl(''),
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
-      description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(800)]]
+      description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(800)]],
+      type: ['', [Validators.required]]
     });
   }
 
   onSubmit() {
-    this.save();
-  }
-
-  save() {
     const id = this.serviceForm.controls.id.value === '' ? 0 : this.serviceForm.controls.id.value;
     const service = new Service(id,
       this.serviceForm.controls.name.value,
-      this.serviceForm.controls.description.value, 'Salud');
+      this.serviceForm.controls.description.value,
+      this.serviceForm.controls.type.value);
+    if (service.isValid()) {
+      this.save(service);
+    } else {
+      alert('Completar los todos los datos requeridos');
+    }
+  }
+
+  save(service: Service) {
     this.serviceUseCase.save(service);
     this.serviceForm.reset();
     this.services = this.serviceUseCase.filterBy(this.typefilter);
@@ -62,6 +68,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
       id: service.id,
       name: service.name,
       description: service.description,
+      type: service.type
     });
   }
 

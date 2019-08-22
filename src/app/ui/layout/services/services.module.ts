@@ -4,7 +4,6 @@ import { ServicesComponent } from './services.component';
 import { RouterModule } from '@angular/router';
 import { ServicesRoutes } from './services.routes';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ComponentsModule } from '../../components/components.module';
 
 
 @NgModule({
@@ -14,7 +13,6 @@ import { ComponentsModule } from '../../components/components.module';
     RouterModule.forChild(ServicesRoutes),
     CommonModule,
     ReactiveFormsModule,
-    ComponentsModule
   ],
 })
 export class ServicesModule { }

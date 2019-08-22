@@ -32,20 +32,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Descripción:</label>
-                                <input type="text" class="form-control" formControlName="description" id="description"
-                                    autocomplete="off"
+                                <textarea class="md-textarea form-control" rows="3" formControlName="description"
+                                    id="description" autocomplete="off"
                                     [ngClass]="{'is-invalid': serviceForm.controls['description'].hasError('required') && serviceForm.controls['description'].touched}">
+                                    </textarea>
                                 <div class="error"
                                     *ngIf="serviceForm.controls['description'].hasError('required') && serviceForm.controls['description'].touched">
                                     description is required</div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Tipo</label>
-                                <select class="form-control">
-                                    <option>Auto</option>
-                                    <option>Salud</option>
-                                    <option>Comida</option>
-                                    <option>Otros</option>
+                                <select class="form-control" formControlName="type" id="type"
+                                    [ngClass]="{'is-invalid': serviceForm.controls['type'].hasError('required') && serviceForm.controls['type'].touched}">
+                                    <option value="Auto">Auto</option>
+                                    <option value="Salud">Salud</option>
+                                    <option value="Comida">Comida</option>
                                 </select>
                             </div>
 

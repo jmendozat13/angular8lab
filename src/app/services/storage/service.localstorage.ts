@@ -38,7 +38,8 @@ export class ServiceLocalStorage implements ServiceRepository {
 
   filterBy(type: string): Service[] {
     const arrayServices = this.getDataService();
-    return arrayServices;//.filter(s => s.type === type);
+    if (type === 'Todos') { return arrayServices; }
+    return arrayServices.filter(s => s.type === type);
   }
 
   private getDataService(): Service[] {

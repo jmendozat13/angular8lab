@@ -9,4 +9,17 @@ export class Service {
         this.description = description;
         this.type = type;
     }
+
+    isValid() {
+        let result = false;
+        if (this.name !== null
+            && this.name !== ''
+            && this.description !== null
+            && this.description !== ''
+            && this.type !== null
+            && this.type !== '') {
+            result = true;
+        }
+        return result;
+    }
 }

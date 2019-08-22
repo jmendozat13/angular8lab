@@ -11,7 +11,7 @@ export class LayoutComponent implements OnInit {
   constructor(public router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['services/todos']);
+    this.router.navigate(['services/Todos']);
   }
 
 }

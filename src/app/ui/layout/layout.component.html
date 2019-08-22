@@ -1,9 +1,22 @@
-<app-nav></app-nav>
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="'/services/Todos'">Todos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="'/services/Auto'">Auto</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="'/services/Salud'">Salud</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="'/services/Comida'">Comida</a>
+  </li>
+</ul>
 <router-outlet></router-outlet>
 <footer id="sticky-footer" class="footer mt-auto py-3">
-    <div class="container text-center">
-        <small> &copy; {{date | date: 'yyyy'}} Copyright
-            <a href="https://vmtgames.com/"> Valentin Mendoza</a>
-        </small>
-    </div>
+  <div class="container text-center">
+    <small> &copy; {{date | date: 'yyyy'}} Copyright
+      <a href="https://vmtgames.com/"> Valentin Mendoza</a>
+    </small>
+  </div>
 </footer>
